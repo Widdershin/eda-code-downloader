@@ -44,8 +44,8 @@ def clone_repos(repos, branch_name_includes, clone_location)
   end
 end
 
+organization = ask("Github Organization to download from (e.g: kakapo-2015):  ")
 username = ask("Github Username:  ")
-organization = ask("Github Organization to download from:  ")
 password = ask("Github Password/Personal Access Token (not stored):  ") { |q| q.echo = '*' }
 branch_name_includes = ask("What's your name? All branches containing this string will be cloned.").downcase
 
