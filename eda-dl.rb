@@ -50,7 +50,7 @@ password = ask("Github Password/Personal Access Token (not stored):  ") { |q| q.
 branch_name_includes = ask("What's your name? All branches containing this string will be cloned.").downcase
 
 default_location_to_clone = "~/eda-repos/#{organization}"
-location_to_clone = File.absolute_path(ask("Where should I clone the repos to?") { |q| q.default = default_location_to_clone })
+location_to_clone = File.expand_path(ask("Where should I clone the repos to?") { |q| q.default = default_location_to_clone })
 
 Octokit.configure do |c|
   c.login = username
