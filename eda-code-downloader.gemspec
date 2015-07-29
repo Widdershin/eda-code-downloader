@@ -1,17 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'eda/code/downloader/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "eda-code-downloader"
-  spec.version       = Eda::Code::Downloader::VERSION
+  spec.version       = "0.0.1"
   spec.authors       = ["Nick Johnstone"]
-  spec.email         = ["TODO: Write your email address"]
+  spec.email         = ["ncwjohnstone@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{A tool to clone all of your Dev Academy work for you.}
+  spec.description   = %q{eda-code-downloader is a command line tool that will clone all of the work that you did at Dev Academy. It handles cloning from branches with names like Nick_and_Hannah so you will have both your solo and pairing work. You can also specify master as the branch to download all the challenges for a cohort.}
+  spec.homepage      = "https://github.com/Widdershin/eda-code-downloader"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
@@ -28,5 +27,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.10"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec"
+  spec.add_development_dependency "rspec", '~> 3.2', ">= 3.2.0"
+  spec.license = "MIT"
 end
