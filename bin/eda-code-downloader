@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require 'eda-code-downloader'
+
+organization = ask("Github Organization to download from (e.g: kakapo-2015):  ")
+username = ask("Github Username: ")
+password = ask("Github Password/Personal Access Token (not stored): ") { |q| q.echo = '*' }
+branch_name_includes = ask("What's your name? All branches containing this string will be cloned.").downcase
+
+default_location_to_clone = "~/eda-repos/#{organization}"
+location_to_clone = File.expand_path(ask("Where should I clone the repos to?") { |q| q.default = default_location_to_clone })
+
+Octokit.configure do |c|
+  c.login = username
+  c.password = password
+end
+
+puts "Cloning repos from #{organization}...\n"
+
+repos = get_repos(organization)
+EdaCodeDownloader.new(repos, branch_name_includes, location_to_clone).cloone_repos
