@@ -1,8 +1,8 @@
 require 'octokit'
 require 'highline/import'
 
-class EdaCodeDownloader < Struct.new(:repos, :branch_name_inclues, :clone_location)
-  def clone_repos(repos, branch_name_includes, clone_location)
+class EdaCodeDownloader < Struct.new(:organization, :branch_name_includes, :clone_location)
+  def clone_repos
     FileUtils::mkdir_p(clone_location) unless File.directory? clone_location
 
     repos.each do |repo|
@@ -19,6 +19,22 @@ class EdaCodeDownloader < Struct.new(:repos, :branch_name_inclues, :clone_locati
 
   private
 
+  def repos
+    @repos ||= fetch_paginated_repos
+  end
+
+  def fetch_paginated_repos
+    next_repo_request = Octokit.org(organization).rels[:repos].get
+    repos = next_repo_request.data
+
+    until next_repo_request.rels[:next].nil?
+      next_repo_request = next_repo_request.rels[:next].get
+      repos.concat(next_repo_request.data)
+    end
+
+    repos
+  end
+
   def clone_url(repo)
     repo.rels.to_hash[:ssh_url]
   end
@@ -29,17 +45,5 @@ class EdaCodeDownloader < Struct.new(:repos, :branch_name_inclues, :clone_locati
     end
 
     Process.detach(clone_job)
-  end
-
-  def get_repos(organization)
-    next_repo_request = Octokit.org(organization).rels[:repos].get
-    repos = next_repo_request.data
-
-    until next_repo_request.rels[:next].nil?
-      next_repo_request = next_repo_request.rels[:next].get
-      repos.concat(next_repo_request.data)
-    end
-
-    repos
   end
 end

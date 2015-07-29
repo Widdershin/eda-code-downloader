@@ -17,5 +17,4 @@ end
 
 puts "Cloning repos from #{organization}...\n"
 
-repos = get_repos(organization)
-EdaCodeDownloader.new(repos, branch_name_includes, location_to_clone).cloone_repos
+EdaCodeDownloader.new(organization, branch_name_includes, location_to_clone).clone_repos
