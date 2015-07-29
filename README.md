@@ -1,36 +1,49 @@
-# Eda::Code::Downloader
+# EDA Code Downloader
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/eda/code/downloader`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+`eda-code-downloader` is a command line tool that clones down all of your Dev Academy code for you. It handles pairing and solo branch names, and can also be used to download all the challenges for a cohort.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'eda-code-downloader'
 ```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install eda-code-downloader
+$ gem install eda-code-downloader
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+$ eda-code-downloader
+```
 
-## Development
+You will be prompted to enter your cohort's Github organization, your Github credentials, your name and the location to clone.
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Github organization is expected to be formatted as `great-spotted-kiwis-2014`. It's in the url of your cohort's github organization.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Your Github credentials are required to access your cohort's repositories. I recommend you choose to use a personal access token instead of your password, but either way nothing is stored.
+
+You can issue a personal access token by visiting [this page](https://github.com/settings/tokens/new). You can then use it in place of a password. See this [Github help page](https://help.github.com/articles/creating-an-access-token-for-command-line-use/) for more information.
+
+Your name is used to determine the branches to clone down. `eda-code-downloader` simply finds the first branch that contains the name you provide (case insensitive), so it finds branches like 'nick' or 'Nick_and_Hannah' alike. Bonus functionality. If you you provide 'master' as your name, the tool will download all of the repos from the cohort.
+
+The location to clone defaults to `~/eda-code/<cohort>` if left blank.
+
+Example usage for me:
+
+```
+ $ eda-code-downloader
+Github Organization to download from (e.g: kakapo-2015):  great-spotted-kiwis-2014
+Github Username: Widdershin
+Github Password/Personal Access Token (not stored): ****************
+What's your name? All branches containing this string will be cloned.
+nick
+Where should I clone the repos to?  |~/eda-repos/great-spotted-kiwis-2014|
+
+Cloning repos from great-spotted-kiwis-2014...
+
+...
+```
+
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/eda-code-downloader.
+Bug reports and pull requests are welcome.
 
