@@ -22,7 +22,7 @@ Your Github credentials are required to access your cohort's repositories. I rec
 
 You can issue a personal access token by visiting [this page](https://github.com/settings/tokens/new). You can then use it in place of a password. See this [Github help page](https://help.github.com/articles/creating-an-access-token-for-command-line-use/) for more information.
 
-Your name is used to determine the branches to clone down. `eda-code-downloader` simply finds the first branch that contains the name you provide (case insensitive), so it finds branches like 'nick' or 'Nick_and_Hannah' alike. Bonus functionality. If you you provide 'master' as your name, the tool will download all of the repos from the cohort.
+Your name is used to determine the branches to clone down. `eda-code-downloader` simply finds the first branch that contains the name you provide (case insensitive), so it finds branches like 'nick' or 'Nick_and_Hannah' alike. Bonus functionality: If you you provide 'master' as your name, the tool will download all of the repos from the cohort.
 
 The location to clone defaults to `~/eda-code/<cohort>` if left blank.
 
